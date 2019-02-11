@@ -2,13 +2,13 @@
 ''' PyQt program to display cheat sheet info for python'''
 
 import sys
-from PyQt4 import QtCore, QtGui
-from PyQt4.QtGui import QTextDocument, QTextCursor
+from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtGui import QTextDocument, QTextCursor
 from python_cheat_sheet_gui import Ui_PythonCheatSheet
 
-class PythonCheatSheet(QtGui.QDialog, Ui_PythonCheatSheet):
+class PythonCheatSheet(QtWidgets.QDialog, Ui_PythonCheatSheet):
     def __init__(self, parent = None):
-        QtGui.QWidget.__init__(self, parent)
+        QtWidgets.QDialog.__init__(self, parent)
         self.ui = Ui_PythonCheatSheet()
         self.ui.setupUi(self)
         self.browser = self.ui.results_browser
@@ -24,7 +24,7 @@ class PythonCheatSheet(QtGui.QDialog, Ui_PythonCheatSheet):
         self.ui.twisted_button.clicked.connect(self.twisted_info)
         self.ui.examples_button.clicked.connect(self.examples_info)
         self.ui.clear_button.clicked.connect(self.clear)
-        self.ui.quit_button.clicked.connect(self.reject)
+        #self.ui.quit_button.clicked.connect(self.reject)
         self.ui.search_text.returnPressed.connect(self.do_search)
         self.first_search = True
 
@@ -89,7 +89,7 @@ class PythonCheatSheet(QtGui.QDialog, Ui_PythonCheatSheet):
         QtCore.QCoreApplication.instance().quit()
 
 if __name__ == '__main__':
-    app = QtGui.QApplication(sys.argv)
+    app = QtWidgets.QApplication(sys.argv)
     myapp = PythonCheatSheet()
     myapp.show()
     sys.exit(app.exec_())
